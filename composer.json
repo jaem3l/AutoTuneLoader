@@ -1,0 +1,27 @@
+{
+    "name": "jaem3l/auto-tune-loader",
+    "description": "Composer Plugin to generate the tune of your app",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christopher Hertel",
+            "email": "christopher.hertel@sensiolabs.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "jæm3l\\AutoTuneLoader\\": "src"
+        }
+    },
+    "require": {
+        "composer-plugin-api": "^1.1",
+        "xosofox/codesound": "@dev"
+    },
+    "require-dev": {
+        "composer/composer": "^1.5"
+    },
+    "extra": {
+        "class": "jæm3l\\AutoTuneLoader\\AutoTuneLoaderPlugin"
+    }
+}
