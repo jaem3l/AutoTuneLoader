@@ -13,6 +13,8 @@ use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * @author Christopher Hertel <christopher.hertel@sensiolabs.de>
@@ -26,27 +28,33 @@ class AutoTuneLoaderPlugin implements PluginInterface, EventSubscriberInterface
     public function dumpAutoTuneLoader(Event $event): void
     {
         $vendorDir = $event->getComposer()->getConfig()->get('vendor-dir');
+        $baseDir = dirname($vendorDir);
+
+        $event->getIO()->write('<info>Generating your auto-tune</info>');
+
+        $finder = (new Finder())
+            ->name('*.php')
+            ->in($vendorDir);
 
         $values = [];
-        if ($handle = opendir($vendorDir)) {
-            while (false !== ($entry = readdir($handle))) {
-                $file = $vendorDir.DIRECTORY_SEPARATOR.$entry;
-                if (is_dir($file)) {
-                    continue;
-                }
+        /** @var SplFileInfo $file */
+        foreach ($finder as $file) {
+            $path = $file->getRealPath();
 
-                $index = $this->bignum($file);
-                $length = filesize($file);
-                $values[] = [$index, $length];
+            if (false === $path) {
+                continue;
             }
-            closedir($handle);
+
+            $index = $this->bignum($path);
+            $length = filesize($path);
+            $values[] = [$index, $length];
         }
 
         $tuples = (new Mapper())->map($values);
         $sequence = Sequence::fromTuples($tuples);
         $player = new Player($sequence);
 
-        (new SoundDumper())->dump($player, __DIR__.'/autotuneloader.ul', __DIR__.'/autotuneloader.wav');
+        (new SoundDumper())->dump($player, $baseDir.'/autotuneloader.ul', $baseDir.'/autotuneloader.wav');
     }
 
     public static function getSubscribedEvents(): array
