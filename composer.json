@@ -16,7 +16,8 @@
     },
     "require": {
         "composer-plugin-api": "^1.1",
-        "xosofox/codesound": "@dev"
+        "xosofox/codesound": "@dev",
+        "symfony/finder": "^3.3"
     },
     "require-dev": {
         "composer/composer": "^1.5"
