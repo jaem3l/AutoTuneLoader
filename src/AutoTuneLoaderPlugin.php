@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace jæm3l\AutoTuneLoader;
 
-use Codesound\Mapper;
+use Codesound\Converter;
 use Codesound\Player;
 use Codesound\Sequence;
 use Codesound\SoundDumper;
@@ -50,7 +50,7 @@ class AutoTuneLoaderPlugin implements PluginInterface, EventSubscriberInterface
             $values[] = [$index, $length];
         }
 
-        $tuples = (new Mapper())->map($values);
+        $tuples = (new Converter())->convert($values);
         $sequence = Sequence::fromTuples($tuples);
         $player = new Player($sequence);
 
