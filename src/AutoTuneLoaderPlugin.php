@@ -52,6 +52,7 @@ class AutoTuneLoaderPlugin implements PluginInterface, EventSubscriberInterface
         $player = new Player($sequence);
 
         (new SoundDumper())->dump($player, $baseDir.'/autotuneloader.ul', $baseDir.'/autotuneloader.wav');
+        unlink($baseDir.'/autotuneloader.ul');
     }
 
     public static function getSubscribedEvents(): array
