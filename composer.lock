@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf781fc26600b0d3601bf253002775c6",
+    "content-hash": "6df96669150ca95c0ed21c478661a7d2",
     "packages": [
         {
             "name": "symfony/finder",
@@ -57,12 +57,17 @@
         },
         {
             "name": "xosofox/codesound",
-            "version": "dev-master",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xosofox/codesound.git",
+                "reference": "cad1b9578759ac9295cff9ee60b23ef4080f952e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../codesound",
-                "reference": "986d3d17b98cf0b51af77038106c5678129a62f4",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/xosofox/codesound/zipball/cad1b9578759ac9295cff9ee60b23ef4080f952e",
+                "reference": "cad1b9578759ac9295cff9ee60b23ef4080f952e",
+                "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.4"
@@ -72,7 +77,19 @@
                 "psr-4": {
                     "Codesound\\": "src/"
                 }
-            }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Dietrich",
+                    "email": "xosofox@gmail.com"
+                }
+            ],
+            "description": "Turn stuff into music",
+            "time": "2017-11-01T00:20:32+00:00"
         }
     ],
     "packages-dev": [
@@ -873,9 +890,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "xosofox/codesound": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
